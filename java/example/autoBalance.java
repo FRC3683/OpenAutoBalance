@@ -11,6 +11,9 @@ public class autoBalance {
     private double onChargeStationDegree;
     private double levelDegree;
     private double debounceTime;
+	private double singleTapTime;
+	private double scoringBackUpTime;
+	private double doubleTapTime;
 
     public autoBalance(){
         mRioAccel = new BuiltInAccelerometer();
@@ -37,6 +40,16 @@ public class autoBalance {
         //Amount of time a sensor condition needs to be met before changing states in seconds
         //Reduces the impact of sensor noice, but too high can make the auto run slower, default = 0.2
         debounceTime = 0.2;
+		
+		//Amount of time to drive towards to scoring target when trying to bump the game piece off
+		//Time it takes to go from starting position to hit the scoring target
+		singleTapTime = 0.4;
+		
+		//Amount of time to drive away from knocked over gamepiece before the second tap
+		scoringBackUpTIme = 0.2;
+		
+		//Amount of time to drive forward to secure the scoring of the gamepiece
+		doubleTapTime = 0.3;
 
     }
 
@@ -116,11 +129,11 @@ public class autoBalance {
             //drive back, then forwards, then back again to knock off and score game piece
             case 0:
                 debounceCount++;
-                if(debounceCount < 40){
+                if(debounceCount < secondsToTicks(singleTapTime)){
                     return -robotSpeedFast;
-                } else if(debounceCount < 60){
+                } else if(debounceCount < secondsToTicks(singleTapTime+scoringBackUpTime)){
                     return robotSpeedFast;
-                } else if(debounceCount < 90){
+                } else if(debounceCount < secondsToTicks(singleTapTime+scoringBackUpTime+doubleTapTime)){
                     return -robotSpeedFast;
                 } else {
                     debounceCount = 0;

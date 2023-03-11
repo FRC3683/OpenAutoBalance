@@ -22,4 +22,7 @@ class autoBalance{
         double onChargeStationDegree;
         double levelDegree;
         double debounceTime;
+        double singleTapTime;
+        double scoringBackUpTime;
+        double doubleTapTime;
 };
