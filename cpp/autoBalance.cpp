@@ -48,10 +48,12 @@ double autoBalance::getRoll(){
 //returns the magnititude of the robot's tilt calculated by the root of
 //pitch^2 + roll^2, used to compensate for diagonally mounted rio
 double autoBalance::getTilt(){
-    if((getPitch() + getRoll())>= 0){
-        return std::sqrt(getPitch()*getPitch() + getRoll()*getRoll());
+	double pitch = getPitch();
+	double roll = getRoll();
+    if((pitch + roll)>= 0){
+        return std::sqrt(pitch*pitch + roll*roll);
     } else {
-        return -std::sqrt(getPitch()*getPitch() + getRoll()*getRoll());
+        return -std::sqrt(pitch*pitch + roll*roll);
     }
 }
 
