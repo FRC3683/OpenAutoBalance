@@ -31,7 +31,7 @@ autoBalance::autoBalance(){
 	singleTapTime = 0.4;
 		
 	//Amount of time to drive away from knocked over gamepiece before the second tap
-	scoringBackUpTIme = 0.2;
+	scoringBackUpTime = 0.2;
 		
 	//Amount of time to drive forward to secure the scoring of the gamepiece
 	doubleTapTime = 0.3;
